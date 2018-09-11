@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
   def show 
   end  
 
-  def edit  
+  def edit 
+    redirect_to questions_path, notice: 'You must be logged in to edit a post' if !(current_user) 
   end   
 
   def new 
@@ -19,12 +20,20 @@ class QuestionsController < ApplicationController
   def create 
     @question = Question.new(question_params)
 
-    if @question.save 
-      redirect_to questions_path notice: 'Question was successfully created.'
+    respond_to do |format|
+      if @question.save 
+        format.html {redirect_to questions_path, notice: 'Question was successfully created.'}
+      else
+        format.html { render :new }
+      end
     end
   end   
 
   def destroy 
+    @question.destroy
+    respond_to do |format|
+      format.html { redirect_to questions_path, notice: 'Question was successfully deleted.' }
+    end
   end   
 
   private 

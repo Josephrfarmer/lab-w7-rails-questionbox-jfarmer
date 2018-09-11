@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
   end   
 
   def new 
+    redirect_to questions_path, notice: 'You must be logged in to add a new post' if !(current_user)
     @question = Question.new
   end  
 

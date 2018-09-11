@@ -1,0 +1,13 @@
+<h1>Log in</h1>
+
+<%= form_with(url: session_path) do |form| %>
+
+    <%= form.label :username %>
+    <%= form.text_field :username, :placeholder => 'username' %>
+    <%= form.label :password %>
+    <%= form.password_field :password%>
+
+
+  <%= submit_tag "Create"%>
+  <p>Jarvis &copy; 2018</p>
+<% end %>

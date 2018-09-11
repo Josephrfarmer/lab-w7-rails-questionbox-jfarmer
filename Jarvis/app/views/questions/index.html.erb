@@ -1,0 +1,17 @@
+<h1>Welcome to Jarvis</h1>
+<h3>A Place For Answers</h3>
+
+<%= link_to "Login", new_session_path %><br>
+      <%= link_to "Sign Up", new_user_path %>
+
+<div>
+  <div>
+  <div><%= link_to 'New Question', new_question_path %></div><br>
+  <% @questions.each do |question| %>
+    <div>
+        <div><%= question.body %></div>
+        <div><%= link_to 'Show', question %></div>
+    </div>
+  <% end %>
+  </div>
+</div>

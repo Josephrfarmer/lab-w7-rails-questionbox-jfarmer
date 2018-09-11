@@ -1,0 +1,25 @@
+<h1>Account Sign-up</h1>
+
+<%= form_with(model: @user, local: true) do |form| %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %><br>
+
+    <%= form.label :username %>
+    <%= form.text_field :username, :placeholder => 'username' %><br>
+
+    <%= form.label :email %>
+    <%= form.password_field :email, :placeholder => 'jarvis@jarvis.com'%><br>
+   
+    <%= form.label :password %>
+    <%= form.password_field :password %><br>
+ 
+
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation %>
+ 
+
+
+  <%= form.submit "Create My Account" %>
+  <p>Jarvis &copy; 2018</p>
+<% end %>

@@ -1,12 +1,12 @@
-
-  <%= link_to 'Jarvis', root_path%>
- 
+<nav class="nav flex-column">
+  <%= link_to 'Home', root_path, class:"text-success nav-link"%>
+     
     <% if !current_user %>
-      <%= link_to "Login", new_session_path%>
-      <%= link_to "Sign Up", new_user_path%>
+      <%= link_to "Login", new_session_path, class:"text-success nav-link"%>
+      <%= link_to "Sign Up", new_user_path, class:"text-success nav-link"%>
     <% else %>
-      <%= link_to 'New Question', new_question_path %>
-      <%= link_to "Log Out", session_path, method: :delete %>
-      <%= link_to current_user.username, current_user %>
+      <%= link_to 'New Question', new_question_path, class:"text-success nav-link" %>
+      <%= link_to "Log Out", session_path, method: :delete, class:"text-success nav-link" %>
+      <%= link_to current_user.username, current_user, class:"text-success nav-link" %>
     <% end %>
-  
+    </nav>

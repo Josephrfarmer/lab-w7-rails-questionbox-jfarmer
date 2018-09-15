@@ -1,17 +1,25 @@
-   <%=render 'header', post: @question %>
-   <h1><%= @user.username %></h1>
+<div class="container">
+<nav class="navbar navbar-dark bg-dark">
+<div class="d-flex flex-column bd-highlight mb-3">
+   <div class="p-2 bd-highlight"><h1 class="text-success"><%= @user.username %></h1></div>
 
-    <p>Member since <%= @user.created_at.year %>.</p>
-    <strong>Number of Post: <%= @user.questions.count %> </strong><br>
+    <div class="p-2 bd-highlight"><p class="text-success">Member since <%= @user.created_at.year %>.</p></div>
+    <div class="p-2 bd-highlight"><strong class="text-success">Number of Questions: <%= @user.questions.count %> </strong><br></div>
+</div>
+    <%=render 'header', post: @question %>
+</nav>
     
 
 
 
 <% @user.questions.any? do%> 
     <%@user.questions.each do |question|%>
-      <%=question.body%><br>
-      <%=link_to 'Show', question%><br>
-      <%=link_to 'Edit', edit_question_path(question) %><br>
-      <%=link_to 'Delete', question, method: :delete, data: {confirm: 'Are you sure?'}%><br>
+      <div class="container-fluid"><%=question.body%><br></div>
+      <div class="btn-group">
+      <%=link_to 'Show', question, class:"btn btn-outline-success btn-sm btn btn-secondary" %><br>
+      <%=link_to 'Edit', edit_question_path(question), class:"btn btn-outline-success btn-sm btn btn-secondary"  %><br>
+      <%=link_to 'Delete', question, method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-outline-success btn-sm btn btn-secondary" %><br>
+      </div>
     <%end%>
  <%end%>
+ </div>

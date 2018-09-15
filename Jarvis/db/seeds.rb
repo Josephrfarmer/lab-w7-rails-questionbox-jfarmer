@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 1.times do
   User.create!(
     name: 'Joseph Farmer',
@@ -19,6 +20,14 @@ end
   Question.create!(
     body: Faker::Lorem.paragraph,
     user_id: '1'
+  )
+end
+
+10.times do
+  Answer.create!(
+    body: Faker::Lorem.paragraph,
+    user_id: '1',
+    question_id: '1'
   )
 end
 

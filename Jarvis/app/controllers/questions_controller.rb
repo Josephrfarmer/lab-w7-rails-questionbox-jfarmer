@@ -5,7 +5,9 @@ class QuestionsController < ApplicationController
     @questions = Question.all 
   end  
 
-  def show 
+  def show
+    #instance var. with answers I need  
+    @answers = @question.answers 
   end  
 
   def edit 

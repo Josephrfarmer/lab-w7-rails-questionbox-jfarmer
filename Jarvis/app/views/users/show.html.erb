@@ -1,0 +1,17 @@
+   <%=render 'header', post: @question %>
+   <h1><%= @user.username %></h1>
+
+    <p>Member since <%= @user.created_at.year %>.</p>
+    <strong>Number of Post: <%= @user.questions.count %> </strong><br>
+    
+
+
+
+<% @user.questions.any? do%> 
+    <%@user.questions.each do |question|%>
+      <%=question.body%><br>
+      <%=link_to 'Show', question%><br>
+      <%=link_to 'Edit', edit_question_path(question) %><br>
+      <%=link_to 'Delete', question, method: :delete, data: {confirm: 'Are you sure?'}%><br>
+    <%end%>
+ <%end%>

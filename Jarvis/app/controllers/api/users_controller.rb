@@ -1,4 +1,5 @@
 class Api::UsersController < ApplicationController
+  before_action :verify_authentication
   def new
     @user = User.new
   end

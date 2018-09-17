@@ -23,9 +23,12 @@
     <div>
         <div class="container-fluid"><%= answer.body %></div>
         <div class="btn-group">
-        <div><%= link_to 'Show', answer, class:"btn btn-outline-success btn-sm btn btn-secondary" %></div>
+        <%if (logged_in?) && (current_user.id === answer.user_id) %>
         <div><%= link_to 'Edit', edit_answer_path(answer), class:"btn btn-outline-success btn-sm btn btn-secondary" %></div>
+        <%end%>
+        <%if (logged_in?) && (current_user.id === answer.user_id) %>
         <%= link_to 'Delete', answer, method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-outline-success btn-sm btn btn-secondary" %>
+        <%end%>
         </div>
     </div>
   <% end %>

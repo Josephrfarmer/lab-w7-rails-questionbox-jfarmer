@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # resources :answers
   root 'questions#index'
   resources :questions
   resources :answers
@@ -13,8 +12,5 @@ Rails.application.routes.draw do
       end 
       resources :users 
       resource :session, only: :create
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     end
-  end
-end
 end

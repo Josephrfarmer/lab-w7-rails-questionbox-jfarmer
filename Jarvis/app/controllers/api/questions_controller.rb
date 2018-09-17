@@ -1,7 +1,8 @@
 class Api::QuestionsController < ApplicationController
+  before_action :verify_authentication
   before_action :set_question, only: [:show, :update, :destroy, :set_user]
   before_action :set_user, only: [:destroy]
-  skip_before_action :verify_authentication, only: [:index]
+  skip_before_action :verify_authentication, only: [:index, :show]
 
   def index
     @questions = Question.all

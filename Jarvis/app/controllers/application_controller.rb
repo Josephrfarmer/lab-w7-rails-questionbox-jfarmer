@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token::ControllerMethods
   helper_method :current_user
   helper_method :logged_in?
-  # before_action :verify_authentication
+  protect_from_forgery with: :null_session
+  
 
   def verify_authentication
     user = authenticate_with_http_token do |token, options|

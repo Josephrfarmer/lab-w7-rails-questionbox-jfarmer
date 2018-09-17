@@ -1,7 +1,8 @@
 class Api::AnswersController < ApplicationController
+  before_action :verify_authentication
   before_action :set_answer, only: [:destroy]
   before_action :set_user, only: [:destroy]
-  skip_before_action :verify_authentication, only: [:index]
+  skip_before_action :verify_authentication, only: [:index, :show]
 
   def new
     if current_user

@@ -11,11 +11,11 @@ class QuestionsController < ApplicationController
   end  
 
   def edit 
-    redirect_to questions_path, notice: 'You must be logged in to edit a post' if !(current_user) 
+    redirect_to questions_path, notice: 'You must be logged in to edit a post' if !(logged_in?) 
   end   
 
   def new 
-    redirect_to questions_path, notice: 'You must be logged in to add a new post' if !(current_user)
+    redirect_to questions_path, notice: 'You must be logged in to add a new post' if !(logged_in?)
     @question = Question.new
   end  
 
@@ -32,9 +32,16 @@ class QuestionsController < ApplicationController
   end   
 
   def destroy 
-    @question.destroy
-    respond_to do |format|
-      format.html { redirect_to questions_path, notice: 'Question was successfully deleted.' }
+    if (logged_in?)
+      if (current_user.id === @question.user_id)
+        if @question.destroy
+        redirect_to questions_path, notice: 'Question was successfully deleted.' 
+        end
+      else
+        redirect_to questions_path, notice: 'You must be the owner of the question to delete.' 
+      end
+    else
+      redirect_to questions_path, notice: 'You must be logged in to delete a new post'
     end
   end   
 

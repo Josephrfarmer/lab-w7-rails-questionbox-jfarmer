@@ -10,9 +10,11 @@
   <%= @question.body %>
 </p>
 
+<h2>Answers</h2>
+
 <% if current_user %>
   <%= form_with(url: answers_path, local: true) do |form| %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class:"form-control", id:"exampleFormControlTextarea1" %>
     <%= form.hidden_field :user_id, :value => current_user.id %>
     <%= form.hidden_field :question_id, :value => @question.id %>
     <%= form.submit %>

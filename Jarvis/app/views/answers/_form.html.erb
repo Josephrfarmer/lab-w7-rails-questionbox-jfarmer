@@ -1,6 +1,7 @@
-<%= form_with model: @question, local:true do |form| %>
+<%= form_with model: @answer, local:true do |form| %>
   <%= form.label :body %>
   <%= form.text_area :body, class:"form-control", id:"exampleFormControlTextarea1" %>
   <%= form.hidden_field :user_id, :value => current_user.id %>
   <%= form.submit %>
 <% end %>
+

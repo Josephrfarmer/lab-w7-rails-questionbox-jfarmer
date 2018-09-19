@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   end 
   
   def create 
-    @answer = Answer.new(answer_params) 
+    @answer = Answer.new(answer_params2) 
 
     if @answer.save
       redirect_to @answer.question, notice: 'Answer was successfully posted.'
@@ -18,22 +18,22 @@ class AnswersController < ApplicationController
   end
 
   def edit 
-    redirect_to questions_path
-  end  
+    redirect_to questions_path, notice: 'You must be logged in to edit an answer' if !(logged_in?)
+  end 
+  
 
   def update 
-
-    if @answer.update(comment_params)
-      redirect_to questions_path, notice: 'Answer was successfully updated.'
+    @question = Answer.find(params[:id]).question_id
+    if @answer.update(answer_params)
+      redirect_to question_path(@question), notice: 'Answer was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy 
-    post = @answer.question
     @answer.destroy
-    redirect_to questions_path, notice: 'Answer was successfully destructed.' 
+    redirect_to questions_path, notice: 'Answer was successfully deleted.' 
   end   
 
 
@@ -43,8 +43,12 @@ def set_answer
   @answer = Answer.find(params[:id])
 end
 
-def answer_params
+def answer_params2
   params.permit(:question_id, :user_id, :body)
+end
+
+def answer_params
+  params.require(:answer).permit(:question_id, :user_id, :body)
 end
 
 end

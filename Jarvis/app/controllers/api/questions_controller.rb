@@ -22,9 +22,9 @@ class Api::QuestionsController < ApplicationController
   end
 
   def destroy
-    if current_user === @user
+    if api_token_user.id == @question.user_id
       @question.destroy
-      render json: @question, status: :destroyed
+      render json: @question, status: :accepted
     else
   
       render json: @question.errors, status: :unprocessable_entity

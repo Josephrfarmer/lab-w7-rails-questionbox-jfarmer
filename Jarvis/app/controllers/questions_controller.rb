@@ -11,8 +11,18 @@ class QuestionsController < ApplicationController
   end  
 
   def edit 
-    redirect_to questions_path, notice: 'You must be logged in to edit a post' if !(logged_in?) 
-  end   
+    redirect_to questions_path, notice: 'You must be logged in to edit a question' if !(logged_in?) 
+  end 
+
+  def update 
+
+    if @question.update(question_params)
+      redirect_to questions_path, notice: 'Question was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
 
   def new 
     redirect_to questions_path, notice: 'You must be logged in to add a new post' if !(logged_in?)

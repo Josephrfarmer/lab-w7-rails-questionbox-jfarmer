@@ -14,10 +14,10 @@
 <div class ="container">
   <div>
   <% @questions.each do |question| %>
-    <div>
+    <div class="question_group">
         <div class="container-fluid"><%= question.body %></div>
         <div class="btn-group">
-        <div><%= link_to 'Show', question, class:"btn btn-outline-success btn-sm btn btn-secondary" %></div>
+        <div><%= link_to 'Answer', question, class:"btn btn-outline-success btn-sm btn btn-secondary" %></div>
         <%if (logged_in?) && (current_user.id === question.user_id) %>
         <div><%= link_to 'Edit', edit_question_path(question), class:"btn btn-outline-secondary btn-sm btn btn-secondary" %></div>
         <%end%>
@@ -25,9 +25,14 @@
         <%= link_to 'Delete', question, method: :delete, data: {confirm: 'Are you sure?'}, class:"btn btn-outline-danger btn-sm btn btn-secondary" %>
         <%end%>
         </div>
+        <p>Asked By: <%=link_to question.user.username,current_user, class:"text-secondary"%></p>
+        <hr>
     </div>
+  
   <% end %>
+  <div class = "paginate_margin">
   <%= paginate @questions %>
   <%= page_entries_info @questions %>
+  </div>
   </div>
 </div>
